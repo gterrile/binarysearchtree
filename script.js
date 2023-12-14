@@ -133,7 +133,14 @@ class Tree {
     arr.push(node.data)
     this.InOrder(node.right, arr)
     return arr
+  }
 
+  PostOrder(node = this.root, arr = []) {
+    if (node == null) return
+    this.PostOrder(node.left, arr)
+    this.PostOrder(node.right, arr)
+    arr.push(node.data)
+    return arr
   }
 }
 
@@ -170,3 +177,4 @@ prettyPrint(newTree.root)
 
 console.log(newTree.PreOrder())
 console.log(newTree.InOrder())
+console.log(newTree.PostOrder())
