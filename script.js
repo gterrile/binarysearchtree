@@ -119,6 +119,22 @@ class Tree {
     return root
   }
 
+  PreOrder(node = this.root, arr = []) {
+    if (node == null) return
+    arr.push(node.data)
+    this.PreOrder(node.left, arr)
+    this.PreOrder(node.right, arr)
+    return arr
+  }
+
+  InOrder(node = this.root, arr = []) {
+    if (node == null) return
+    this.InOrder(node.left, arr) 
+    arr.push(node.data)
+    this.InOrder(node.right, arr)
+    return arr
+
+  }
 }
 
 
@@ -142,10 +158,15 @@ const longArray = [1,2,4,6,8,9,12,14,17,23,26,27,28,29,30,34,35,39,41,50,55,60,6
 
 let newTree = new Tree(longArray)
 console.log(newTree)
-newTree.insert(82, newTree)
 prettyPrint(newTree.root)
-// newTree.delete(20)
+
+// newTree.insert(82, newTree)
 // prettyPrint(newTree.root)
-newTree.delete(23)
-console.log(newTree)
-prettyPrint(newTree.root)
+// // newTree.delete(20)
+// // prettyPrint(newTree.root)
+// newTree.delete(23)
+// console.log(newTree)
+// prettyPrint(newTree.root)
+
+console.log(newTree.PreOrder())
+console.log(newTree.InOrder())
