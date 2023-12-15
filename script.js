@@ -119,28 +119,40 @@ class Tree {
     return root
   }
 
-  PreOrder(node = this.root, arr = []) {
+  preOrder(node = this.root, arr = []) {
     if (node == null) return
     arr.push(node.data)
-    this.PreOrder(node.left, arr)
-    this.PreOrder(node.right, arr)
+    this.preOrder(node.left, arr)
+    this.preOrder(node.right, arr)
     return arr
   }
 
-  InOrder(node = this.root, arr = []) {
+  inOrder(node = this.root, arr = []) {
     if (node == null) return
-    this.InOrder(node.left, arr) 
+    this.inOrder(node.left, arr) 
     arr.push(node.data)
-    this.InOrder(node.right, arr)
+    this.inOrder(node.right, arr)
     return arr
   }
 
-  PostOrder(node = this.root, arr = []) {
+  postOrder(node = this.root, arr = []) {
     if (node == null) return
-    this.PostOrder(node.left, arr)
-    this.PostOrder(node.right, arr)
+    this.postOrder(node.left, arr)
+    this.postOrder(node.right, arr)
     arr.push(node.data)
     return arr
+  }
+
+  depth(value, node = this.root, depth = 0) {
+    if (value == node.data) {
+      return depth
+    } 
+    depth += 1
+    if (value > node.data) {
+      return this.depth(value, node.right, depth)
+    } else {
+      return this.depth(value, node.left, depth)
+    }
   }
 }
 
@@ -175,6 +187,7 @@ prettyPrint(newTree.root)
 // console.log(newTree)
 // prettyPrint(newTree.root)
 
-console.log(newTree.PreOrder())
-console.log(newTree.InOrder())
-console.log(newTree.PostOrder())
+console.log(newTree.preOrder())
+console.log(newTree.inOrder())
+console.log(newTree.postOrder())
+console.log(newTree.depth(29))
